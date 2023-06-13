@@ -10,22 +10,128 @@
 <!--  Including header_bar.xml file here   -->
     <include
         layout="@layout/header_bar"
+        android:id="@+id/header_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/tv1"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/ly1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toBottomOf="@id/header_bar">
+
+        <ImageView
+            android:id="@+id/iv11"
+            android:src="@drawable/ic_play"
+            style="@style/iconStyle"/>
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9:00 AM - 1:00 PM"
+            style="@style/AppTextStyle"
+            android:layout_marginStart="8dp" />
+
+        <ImageView
+            android:id="@+id/lv12"
+            android:src="@drawable/ic_stop"
+            android:layout_marginStart="8dp"
+            style="@style/iconStyle"
+           />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ly2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toBottomOf="@id/ly1"
+        app:layout_constraintBottom_toTopOf="@id/ly3">
+
+        <ImageView
+            android:id="@+id/iv21"
+            android:src="@drawable/ic_play"
+            style="@style/iconStyle"/>
+
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2:00 PM - 6:00 PM"
+            style="@style/AppTextStyle"
+            android:layout_marginStart="8dp" />
+
+        <ImageView
+            android:id="@+id/iv22"
+            style="@style/iconStyle"
+            android:src="@drawable/ic_stop"
+            android:layout_marginStart="8dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ly3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toBottomOf="@id/ly2">
+
+        <ImageView
+            android:id="@+id/iv31"
+            style="@style/iconStyle"
+            android:src="@drawable/ic_play" />
+
+        <TextView
+            android:id="@+id/tv3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="7:00 PM - 9:00 PM"
+            android:layout_marginStart="8dp"
+            style="@style/AppTextStyle"/>
+
+        <ImageView
+            android:id="@+id/tv32"
+            style="@style/iconStyle"
+            android:src="@drawable/ic_stop"
+            android:layout_marginStart="8dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lylast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        app:layout_constraintBottom_toTopOf="@+id/footer_bar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent">
 
-<!-- Including footer_bar.xml file here -->
+        <ImageView
+            android:id="@+id/ivstart"
+            style="@style/iconStyle"
+            android:src="@drawable/ic_play"
 
+            />
+
+        <TextView
+            android:id="@+id/tvlast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Start Work"
+            android:layout_marginStart="8dp"
+            android:layout_gravity="center_vertical"
+            style="@style/AppTextStyle"/>
+    <!-- Including footer_bar.xml file here -->
+    </LinearLayout>
     <include
+        android:id="@+id/footer_bar"
         layout="@layout/footer_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

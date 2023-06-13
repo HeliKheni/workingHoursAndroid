@@ -6,4 +6,5 @@
     </style>
 
     <style name="Theme.Project" parent="Base.Theme.Project" />
+
 </resources>
