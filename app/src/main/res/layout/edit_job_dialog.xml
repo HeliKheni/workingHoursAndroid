@@ -1,0 +1,76 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Edit Company Name -->
+    <EditText
+        android:id="@+id/editCompanyName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Company Name"
+        android:minHeight="48dp" />
+
+    <!-- Edit Job Title -->
+    <EditText
+        android:id="@+id/editJobTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Job Title"
+        android:minHeight="48dp" />
+
+    <!-- Edit Hourly Rate -->
+    <EditText
+        android:id="@+id/editHourlyRate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Hourly Rate"
+        android:minHeight="48dp" />
+
+    <!-- Edit Description -->
+    <EditText
+        android:id="@+id/editDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Description"
+        android:minHeight="48dp" />
+
+    <!-- Edit Tax -->
+    <EditText
+        android:id="@+id/editTax"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tax"
+        android:minHeight="48dp" />
+
+    <!-- Edit Overtime Rate -->
+    <EditText
+        android:id="@+id/editOvertimeRate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Overtime Rate"
+        android:minHeight="48dp" />
+
+    <!-- Edit and Close Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end">
+
+        <Button
+            android:id="@+id/editButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit" />
+
+        <Button
+            android:id="@+id/closeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Close" />
+
+    </LinearLayout>
+
+</LinearLayout>
