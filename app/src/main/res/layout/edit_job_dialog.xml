@@ -4,12 +4,19 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <include
+        layout="@layout/header_bar"
+        android:id="@+id/header_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <!-- Edit Company Name -->
     <EditText
         android:id="@+id/editCompanyName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Company Name"
+        android:layout_marginTop="20dp"
         android:minHeight="48dp" />
 
     <!-- Edit Job Title -->
@@ -72,5 +79,10 @@
             android:text="Close" />
 
     </LinearLayout>
-
+    <include
+        android:id="@+id/footer_bar"
+        layout="@layout/footer_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent" />
 </LinearLayout>
