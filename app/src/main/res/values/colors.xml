@@ -8,7 +8,8 @@
     <color name="widget_border">#dd777777</color>
     <color name="text_disabled">#ff444444</color>
     <color name="date_regular_work">#d0d0d0</color>
-    <color name="date_regular_free">#5CFF16</color>
-    <color name="date_free">#00FFC4</color>
-    <color name="date_target_changed">#FFD603</color>
+    <color name="green">#5CFF16</color>
+    <color name="sky">#00FFC4</color>
+    <color name="orange">#FFD603</color>
+    <color name="rich_black">#505e23</color>
 </resources>
