@@ -11,7 +11,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:layout_gravity="center"
-    android:layout_marginLeft="35dp">
+    android:layout_marginLeft="15dp">
 
         <ImageButton
             android:id="@+id/cal"
@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Calendar"
-            android:textSize="15sp"
+            android:textSize="17sp"
             android:textStyle="bold">
 
         </TextView>
@@ -40,10 +40,10 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_gravity="center"
-            android:layout_marginLeft="80dp">
+            android:layout_marginLeft="30dp">
 
                 <ImageButton
-                    android:id="@+id/cal"
+                    android:id="@+id/home"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -67,10 +67,37 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_gravity="center"
-            android:layout_marginLeft="80dp">
+            android:layout_marginLeft="30dp">
 
                 <ImageButton
-                    android:id="@+id/cal"
+                    android:id="@+id/jobs"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:src="@drawable/jobs_icon"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Jobs"
+                    android:textSize="15sp"
+                    android:textStyle="bold">
+                </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_marginLeft="30dp">
+
+                <ImageButton
+                    android:id="@+id/setting"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -83,6 +110,33 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Setting"
+                    android:textSize="15sp"
+                    android:textStyle="bold">
+                </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_marginLeft="30dp">
+
+                <ImageButton
+                    android:id="@+id/analytics"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:src="@drawable/analytics_icon"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Report"
                     android:textSize="15sp"
                     android:textStyle="bold">
                 </TextView>
