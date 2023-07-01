@@ -6,36 +6,87 @@
         android:orientation="horizontal"
         android:padding="10sp">
 
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:layout_marginLeft="35dp">
 
         <ImageButton
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:id="@+id/cal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:src="@drawable/ic_launcher_foreground"
+            android:src="@drawable/calendar_icon"
             android:background="@android:color/transparent"
-            android:scaleType="fitCenter" />
+            android:scaleType="fitCenter"
+            />
 
-        <ImageButton
-            android:layout_width="0dp"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/ic_launcher_foreground"
-            android:background="@android:color/transparent"
-            android:scaleType="fitCenter" />
+            android:text="Calendar"
+            android:textSize="15sp"
+            android:textStyle="bold">
 
-        <ImageButton
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/ic_launcher_foreground"
-            android:background="@android:color/transparent"
-            android:scaleType="fitCenter" />
+        </TextView>
 
-        <ImageButton
-            android:layout_width="0dp"
+
+</LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/ic_launcher_foreground"
-            android:background="@android:color/transparent"
-            android:scaleType="fitCenter" />
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_marginLeft="80dp">
+
+                <ImageButton
+                    android:id="@+id/cal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:src="@drawable/home_icon"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Home"
+                    android:textSize="15sp"
+                    android:textStyle="bold">
+                </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_marginLeft="80dp">
+
+                <ImageButton
+                    android:id="@+id/cal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:src="@drawable/setting_icon"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Setting"
+                    android:textSize="15sp"
+                    android:textStyle="bold">
+                </TextView>
+
+        </LinearLayout>
+
 </LinearLayout>
