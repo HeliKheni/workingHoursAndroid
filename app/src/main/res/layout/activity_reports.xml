@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Reports">
+
+
+        <!-- Header -->
+        <include
+            android:id="@+id/header"
+            layout="@layout/header_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+
+        <!-- Page Title -->
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Report & Analytics"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/header"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Date Range Inputs -->
+        <EditText
+            android:id="@+id/editTextFromDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="From"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/editTextToDate"
+            app:layout_constraintTop_toBottomOf="@id/textViewTitle"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="16dp"/>
+
+        <EditText
+            android:id="@+id/editTextToDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="To"
+            app:layout_constraintStart_toEndOf="@id/editTextFromDate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewTitle"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"/>
+
+    <!-- Time Span Label -->
+    <TextView
+        android:id="@+id/textViewTimeSpanLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TimeSpan:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextFromDate"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp" />
+
+    <!-- Time Span Dropdown -->
+    <Spinner
+        android:id="@+id/spinnerTimeSpan"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:entries="@array/time_span_options"
+        app:layout_constraintStart_toEndOf="@id/textViewTimeSpanLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextFromDate"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp" />
+
+
+    <!-- Radio Buttons -->
+        <RadioGroup
+            android:id="@+id/radioGroupType"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spinnerTimeSpan"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioButtonWorkingTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Working Time" />
+
+            <RadioButton
+                android:id="@+id/radioButtonEarnings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Earnings" />
+
+        </RadioGroup>
+
+    <ImageView
+        android:id="@+id/imageViewGraph"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+       android:background="@color/sky"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/radioGroupType"
+
+    app:layout_constraintBottom_toTopOf="@id/textViewTotal"
+    android:layout_marginTop="16dp"
+    android:layout_marginBottom="16dp" />
+
+        <!-- Total Field -->
+        <TextView
+            android:id="@+id/textViewTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total: $0.00"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/footer"
+            android:layout_marginTop="16dp"
+            android:textSize="18sp" />
+    <!-- Footer -->
+    <include
+        android:id="@+id/footer"
+        layout="@layout/footer_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

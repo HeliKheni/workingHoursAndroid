@@ -4,7 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    >
+
+    <!-- Include Header -->
+    <include
+        android:id="@+id/header"
+        layout="@layout/header_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <!-- User Profile Section -->
     <TextView
@@ -35,31 +42,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Email"
-        android:minHeight="48dp" />
-
-    <!-- Job Details Section -->
-    <TextView
-        android:id="@+id/jobDetailsTitleTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Job Details"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:paddingTop="16dp"
-        android:paddingBottom="8dp" />
-
-    <EditText
-        android:id="@+id/jobTitleEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Job Title"
-        android:minHeight="48dp" />
-
-    <EditText
-        android:id="@+id/companyNameEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Company Name"
         android:minHeight="48dp" />
 
     <!-- App Settings Section -->
@@ -123,5 +105,13 @@
         android:minHeight="48dp"
         android:text="Save"
         tools:ignore="TouchTargetSizeCheck" />
+
+    <!-- Include Footer -->
+    <include
+        android:id="@+id/footer"
+        layout="@layout/footer_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 
 </LinearLayout>

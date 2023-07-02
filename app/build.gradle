@@ -16,6 +16,10 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+// Module-level build file
+    dependencies {
+        implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    }
     buildTypes {
         release {
             minifyEnabled false

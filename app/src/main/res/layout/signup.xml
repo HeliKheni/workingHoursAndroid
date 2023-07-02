@@ -51,12 +51,24 @@
         android:layout_height="wrap_content"
         android:text="Sign Up" />
 
+
+
+    <!-- Signup with Google option -->
+    <Button
+        android:id="@+id/buttonSignupGoogle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign Up with Google"
+        />
+
     <!-- Login text -->
     <TextView
         android:id="@+id/textViewLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Already have an account? Login" />
+        android:text="Already have an account? Login"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        />
 
 </LinearLayout>
-    aintLayout>
