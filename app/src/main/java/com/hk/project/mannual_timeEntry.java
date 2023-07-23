@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -38,7 +40,6 @@ public class mannual_timeEntry extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mannual_time_entry);
 
-
         btnSave = findViewById(R.id.btnSave);
         btnCancel = findViewById(R.id.btnCancel);
         etDay = findViewById(R.id.etDay);
@@ -69,18 +70,14 @@ public class mannual_timeEntry extends AppCompatActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    insertDataIntoDatabase();
-                } catch (ParseException e) {
-                    throw new RuntimeException(e);
-                }
+                insertDataIntoDatabase();
             }
         });
 
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Handle the Cancel button action
+                finish();
             }
         });
 
@@ -193,26 +190,46 @@ public class mannual_timeEntry extends AppCompatActivity {
         String selectedTime = sdf.format(calendar.getTime());
         editText.setText(selectedTime);
     }
-    private void insertDataIntoDatabase() throws ParseException {
-        Toast.makeText(mannual_timeEntry.this, "Inside the function!", Toast.LENGTH_SHORT).show();
+    private void insertDataIntoDatabase() {
+        try {
+            String description = etDescription.getText().toString();
+            String job = spJob.getSelectedItem().toString();
+            String day = etDay.getText().toString();
+            String startTime = etStartWork.getText().toString();
+            String endTime = etEndWork.getText().toString();
+            String workingTime = tvWorkingTime.getText().toString();
 
-        String description = etDescription.getText().toString();
-        String job = spJob.getSelectedItem().toString();
+            // Get a writable database using the DatabaseHelper
+            SQLiteDatabase database = new DatabaseHelper(this).getWritableDatabase();
 
-        String day = etDay.getText().toString();
-        String startTime = etStartWork.getText().toString();
-        String endTime = etEndWork.getText().toString();
-        String workingTime = tvWorkingTime.getText().toString();
+            // Create a ContentValues object to store the data to be inserted
+            ContentValues values = new ContentValues();
+            values.put(DatabaseHelper.COLUMN_DESCRIPTION, description);
+            values.put(DatabaseHelper.COLUMN_JOB, job);
+            values.put(DatabaseHelper.COLUMN_DAY, day);
+            values.put(DatabaseHelper.COLUMN_START_TIME, startTime);
+            values.put(DatabaseHelper.COLUMN_END_TIME, endTime);
+            values.put(DatabaseHelper.COLUMN_WORKING_TIME, workingTime);
 
-        Log.d("DEBUG", "Description: " + description);
-        Log.d("DEBUG", "Job: " + job);
-        Log.d("DEBUG", "Day: " + day);
-        Log.d("DEBUG", "StartTime: " + startTime);
-        Log.d("DEBUG", "EndTime: " + endTime);
-        Log.d("DEBUG", "WorkingTime: " + workingTime);
+            // Insert the data into the table
+            long newRowId = database.insert(DatabaseHelper.TABLE_NAME, null, values);
 
+            // Check if the insertion was successful
+            if (newRowId != -1) {
+                Toast.makeText(this, "Data inserted successfully!", Toast.LENGTH_SHORT).show();
 
+            } else {
+                Toast.makeText(this, "Failed to insert data.", Toast.LENGTH_SHORT).show();
+            }
 
+            // Close the database
+            database.close();
+            // Finish the current activity to go back to the previous activity
+            finish();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
 
 }
