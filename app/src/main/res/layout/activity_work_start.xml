@@ -169,7 +169,8 @@
         style="@style/iconStyle"
         android:layout_weight="1"
         android:background="@android:color/transparent"
-        android:src="@drawable/ic_play" />
+        android:src="@drawable/ic_play"
+        android:onClick="buttonStartWorkClicked"/>
 
     <TextView
         android:id="@+id/tvlast"
@@ -178,7 +179,8 @@
         android:text="Start Work"
         android:textSize="@dimen/text"
         style="@style/AppTextStyle"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:onClick="buttonStartWorkClicked"/>
 
   </LinearLayout>
 
