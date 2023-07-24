@@ -29,7 +29,12 @@ public class workStart extends AppCompatActivity {
         // Call the method to display the data from SQLite
         displayDataFromSQLite();
     }
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Refresh the data from SQLite whenever the activity is resumed
+        displayDataFromSQLite();
+    }
     private void displayDataFromSQLite() {
         // Get a readable database using the DatabaseHelper
         SQLiteDatabase database = new DatabaseHelper(this).getReadableDatabase();

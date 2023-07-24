@@ -8,6 +8,7 @@ public class WorkItem {
     private String endTime;
     private String workingTime;
 
+    private Boolean isExpanded;
     public WorkItem(String description, String job, String day, String startTime, String endTime, String workingTime) {
         this.description = description;
         this.job = job;
@@ -15,6 +16,7 @@ public class WorkItem {
         this.startTime = startTime;
         this.endTime = endTime;
         this.workingTime = workingTime;
+        this.isExpanded = false;
     }
 
     // Getters for all the data fields
@@ -40,5 +42,14 @@ public class WorkItem {
 
     public String getWorkingTime() {
         return workingTime;
+    }
+
+    // Getter and setter for isExpanded
+    public boolean isExpanded() {
+        return isExpanded;
+    }
+
+    public void setExpanded(boolean expanded) {
+        isExpanded = expanded;
     }
 }

@@ -14,20 +14,25 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Title -->
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Manual Add Work"
-        android:background="@color/sky"
-        android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@id/header"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        />
 
+
+    <LinearLayout
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        android:layout_marginTop="10sp"
+        android:background="@color/sky"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/tvtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Manual Add Work "
+            style="@style/AppTitleStyle" />
+    </LinearLayout>
     <!-- Description -->
     <TextView
         android:id="@+id/tvDescription"
@@ -181,7 +186,7 @@
 
     <Button
             android:id="@+id/btnSave"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Save"
             app:layout_constraintTop_toBottomOf="@id/tvDisplayWorkingTime"
@@ -193,7 +198,7 @@
 
         <Button
             android:id="@+id/btnCancel"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cancel"
             app:layout_constraintTop_toBottomOf="@id/tvDisplayWorkingTime"

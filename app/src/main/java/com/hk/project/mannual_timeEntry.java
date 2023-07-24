@@ -163,6 +163,14 @@ public class mannual_timeEntry extends AppCompatActivity {
             Calendar endTimeCalendar = Calendar.getInstance();
             endTimeCalendar.setTime(sdf.parse(endTime));
 
+            // Check if the end time is before the start time (spanning across two days)
+            boolean isNextDay = endTimeCalendar.before(startTimeCalendar);
+
+            if (isNextDay) {
+                // Add one day to the end time
+                endTimeCalendar.add(Calendar.DATE, 1);
+            }
+
             // Calculate the time difference between start and end times in minutes
             long timeDifferenceInMillis = endTimeCalendar.getTimeInMillis() - startTimeCalendar.getTimeInMillis();
             workingTimeInMinutes = timeDifferenceInMillis / (60 * 1000);
@@ -173,10 +181,18 @@ public class mannual_timeEntry extends AppCompatActivity {
 
             // Set the calculated working time to the etWorkingTime EditText
             tvWorkingTime.setText(workingTime);
+
+            // Format the end time to show only the hours and minutes
+            SimpleDateFormat sdfTime = new SimpleDateFormat("hh:mm a", Locale.getDefault());
+            String endTimeWithTimeOnly = sdfTime.format(endTimeCalendar.getTime());
+
+            // Set the end time with only the hours and minutes to the etEndWork EditText
+            etEndWork.setText(endTimeWithTimeOnly);
         } catch (ParseException e) {
             e.printStackTrace();
         }
     }
+
 
 
     private void updateDateField(EditText editText) {
