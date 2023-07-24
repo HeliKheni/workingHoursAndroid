@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".workUpdateDelete">
+
+    <!-- Include Header -->
+    <include
+        android:id="@+id/header"
+        layout="@layout/header_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        android:layout_marginTop="10sp"
+        android:background="@color/sky"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/tvtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Manage Work Details "
+            style="@style/AppTitleStyle" />
+
+
+    </LinearLayout>
+ <!-- Data Layout -->
+
+    <!-- Data Layout -->
+    <LinearLayout
+        android:id="@+id/dataLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        android:background="@color/white"
+        android:elevation="4dp"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="10sp"
+        app:layout_constraintTop_toBottomOf="@id/header">
+
+        <!-- Description Field -->
+        <TextView
+            android:id="@+id/tvDescriptionField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Description:"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/etDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Description Here"
+            android:textSize="16sp"
+            android:background="@drawable/edit_text_border"
+            android:padding="8dp"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Job Field -->
+        <TextView
+            android:id="@+id/tvJobField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Job:"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/etJob"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Job Here"
+            android:textSize="16sp"
+            android:background="@drawable/edit_text_border"
+            android:padding="8dp"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Day Field -->
+        <TextView
+            android:id="@+id/tvDayField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Day:"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/etDay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Day Here"
+            android:textSize="16sp"
+            android:background="@drawable/edit_text_border"
+            android:padding="8dp"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Start Time Field -->
+        <TextView
+            android:id="@+id/tvStartTimeField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Start Time:"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/etStartTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Start Time Here"
+            android:textSize="16sp"
+            android:background="@drawable/edit_text_border"
+            android:padding="8dp"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="8dp" />
+
+        <!-- End Time Field -->
+        <TextView
+            android:id="@+id/tvEndTimeField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="End Time:"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/etEndTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter End Time Here"
+            android:textSize="16sp"
+            android:background="@drawable/edit_text_border"
+            android:padding="8dp"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Working Time Field -->
+        <TextView
+            android:id="@+id/tvWorkingTimeField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Working Time:"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/etWorkingTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Working Time Here"
+            android:textSize="16sp"
+            android:background="@drawable/edit_text_border"
+            android:padding="8dp"
+            android:editable="false"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="8dp" />
+    </LinearLayout>
+        <Button
+            android:id="@+id/btnUpdate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/button_selector"
+            android:text="Update"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="10sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnDelete"
+            app:layout_constraintTop_toBottomOf="@+id/dataLayout" />
+
+        <Button
+            android:id="@+id/btnDelete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/button_selector"
+            android:text="Delete"
+            android:layout_marginTop="10sp"
+            android:textColor="@android:color/white"
+            app:layout_constraintStart_toEndOf="@+id/btnUpdate"
+            app:layout_constraintEnd_toStartOf="@+id/btnCancel"
+            app:layout_constraintTop_toBottomOf="@+id/dataLayout" />
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/button_selector"
+            android:text="Cancel"
+            android:layout_marginTop="10sp"
+            android:textColor="@android:color/white"
+            app:layout_constraintStart_toEndOf="@+id/btnDelete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dataLayout" />
+
+
+    <include
+        android:id="@+id/footer"
+        layout="@layout/footer_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

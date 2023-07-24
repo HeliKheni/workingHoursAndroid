@@ -33,6 +33,20 @@
             android:text="Manual Add Work "
             style="@style/AppTitleStyle" />
     </LinearLayout>
+    <!-- Data Layout -->
+    <LinearLayout
+        android:id="@+id/dataLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        android:background="@color/white"
+        android:elevation="4dp"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header">
     <!-- Description -->
     <TextView
         android:id="@+id/tvDescription"
@@ -47,7 +61,7 @@
 
         <EditText
             android:id="@+id/etDescription"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter description"
             android:inputType="text"
@@ -72,7 +86,7 @@
 
         <Spinner
             android:id="@+id/spJob"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/tvJob"
             app:layout_constraintStart_toStartOf="parent"
@@ -95,7 +109,7 @@
 
         <EditText
             android:id="@+id/etDay"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Select day"
             android:inputType="date"
@@ -120,7 +134,7 @@
 
         <EditText
             android:id="@+id/etStartWork"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter start time"
             android:inputType="time"
@@ -145,7 +159,7 @@
 
         <EditText
             android:id="@+id/etEndWork"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter end time"
             android:inputType="time"
@@ -156,40 +170,40 @@
             android:layout_marginEnd="16dp"
             android:layout_marginTop="8dp" />
 
-        <!-- Working Time -->
-        <TextView
-            android:id="@+id/tvWorkingTime"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Working Time"
-            android:textSize="16sp"
             app:layout_constraintTop_toBottomOf="@id/etEndWork"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
 
-    <!-- Save and Cancel Buttons -->
+            <!-- Working Time -->
+            <TextView
+                android:id="@+id/tvWorkingTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Working Time"
+                android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/tvDisplayWorkingTime"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="00:00"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@id/tvWorkingTime"
-        app:layout_constraintTop_toBottomOf="@id/etEndWork" />
+            <TextView
+                android:id="@+id/tvDisplayWorkingTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:00"
+                android:textSize="16sp"
+                android:layout_marginStart="16dp" />
 
+        </LinearLayout>
+
+    </LinearLayout>
     <Button
             android:id="@+id/btnSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Save"
-            app:layout_constraintTop_toBottomOf="@id/tvDisplayWorkingTime"
+            app:layout_constraintTop_toBottomOf="@id/dataLayout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btnCancel"
             android:layout_marginStart="16dp"
@@ -201,13 +215,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cancel"
-            app:layout_constraintTop_toBottomOf="@id/tvDisplayWorkingTime"
+            app:layout_constraintTop_toBottomOf="@id/dataLayout"
             app:layout_constraintStart_toEndOf="@+id/btnSave"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:onClick="buttonCancelClicked"/>
+
 
         <!-- Include Footer -->
         <include

@@ -100,7 +100,7 @@ public class workStart extends AppCompatActivity {
         recyclerView.setAdapter(workAdapter);
     }
 
-    public void buttonStartWorkClicked(View view) {
+    public void buttonPlusClicked(View view) {
         Intent intent = new Intent(this, mannual_timeEntry.class);
         startActivity(intent);
     }

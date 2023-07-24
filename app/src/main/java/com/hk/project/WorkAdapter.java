@@ -1,5 +1,6 @@
 package com.hk.project;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +54,19 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.WorkViewHolder
             notifyDataSetChanged();
         });
 
+        // Set click listener for the expandableLayout
+        holder.expandableLayout.setOnClickListener(v -> {
+            // Start a new activity to open a form for updating or deleting the data
+            Intent intent = new Intent(v.getContext(), workUpdateDelete.class);
+            intent.putExtra("description", workItem.getDescription());
+            intent.putExtra("job", workItem.getJob());
+            intent.putExtra("day", workItem.getDay());
+            intent.putExtra("startTime", workItem.getStartTime());
+            intent.putExtra("endTime", workItem.getEndTime());
+            intent.putExtra("workingTime", workItem.getWorkingTime());
+            v.getContext().startActivity(intent);
+        });
+
         // Set other details for the expanded view
         if (expandedStates[position]) {
 
@@ -96,7 +110,7 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.WorkViewHolder
             tvTotalWorkingHours = itemView.findViewById(R.id.tvTotalWorkingHours);
             ivArrow = itemView.findViewById(R.id.ivArrow);
             expandableLayout = itemView.findViewById(R.id.expandableLayout);
-            // Add this line
+
         }
     }
 

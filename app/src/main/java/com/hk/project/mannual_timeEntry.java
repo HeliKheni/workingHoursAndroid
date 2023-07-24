@@ -194,7 +194,6 @@ public class mannual_timeEntry extends AppCompatActivity {
     }
 
 
-
     private void updateDateField(EditText editText) {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.getDefault());
         String selectedDate = sdf.format(calendar.getTime());
