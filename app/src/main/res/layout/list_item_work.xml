@@ -76,6 +76,14 @@
 
         <!-- Add other details TextViews here with relevant data -->
         <TextView
+            android:id="@+id/tvDiscription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="4dp" />
+
+        <TextView
             android:id="@+id/tvJob"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

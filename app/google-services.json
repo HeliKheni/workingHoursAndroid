@@ -1,0 +1,38 @@
+{
+  "project_info": {
+    "project_number": "807082635141",
+    "project_id": "projectandroidtimetracker",
+    "storage_bucket": "projectandroidtimetracker.appspot.com",
+    "firebase_url": "https://projectandroidtimetracker.firebaseio.com/"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:807082635141:android:3980161b2d60d40d069eec"
+
+      },
+      "oauth_client": [
+        {
+          "client_id": "807082635141-p1v47ibqnta6atun83a93j87g21efbfq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4NyPXn5brpDmW2KbPYL6CnG5OyUlKIqg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "807082635141-p1v47ibqnta6atun83a93j87g21efbfq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -55,6 +55,8 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.WorkViewHolder
 
         // Set other details for the expanded view
         if (expandedStates[position]) {
+
+            holder.tvDiscription.setText("Discription: " + workItem.getDescription());
             holder.tvJob.setText("Job: " + workItem.getJob());
             holder.tvDay.setText("Day: " + workItem.getDay());
             holder.tvStartTime.setText("Start Time: " + workItem.getStartTime());
@@ -62,6 +64,7 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.WorkViewHolder
             holder.tvWorkingTime.setText("Working Time: " + workItem.getWorkingTime());
         } else {
             // Reset the text to empty when not expanded
+            holder.tvDiscription.setText("");
             holder.tvJob.setText("");
             holder.tvDay.setText("");
             holder.tvStartTime.setText("");
@@ -76,7 +79,7 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.WorkViewHolder
     }
 
     public class WorkViewHolder extends RecyclerView.ViewHolder {
-        TextView tvJobDate, tvJob, tvDay, tvStartTime, tvEndTime, tvWorkingTime, tvTotalWorkingHours;
+        TextView tvJobDate, tvJob, tvDay, tvStartTime, tvEndTime, tvWorkingTime, tvTotalWorkingHours, tvDiscription;
         ImageView ivArrow;
         LinearLayout expandableLayout;
 
@@ -84,6 +87,7 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.WorkViewHolder
         public WorkViewHolder(@NonNull View itemView) {
             super(itemView);
             tvJobDate = itemView.findViewById(R.id.tvJobDate);
+            tvDiscription = itemView.findViewById(R.id.tvDiscription);
             tvJob = itemView.findViewById(R.id.tvJob);
             tvDay = itemView.findViewById(R.id.tvDay);
             tvStartTime = itemView.findViewById(R.id.tvStartTime);
