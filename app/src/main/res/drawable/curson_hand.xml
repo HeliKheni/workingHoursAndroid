@@ -1,8 +1,6 @@
-<!-- cursor_hand.xml -->
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <size android:width="1dp" />
-    <solid android:color="@android:color/transparent" />
-    <stroke
-        android:width="2dp"
-        android:color="@android:color/black" />
-</shape>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@android:drawable/ic_dialog_info" android:state_pressed="true"/>
+    <item android:drawable="@android:drawable/ic_dialog_info" android:state_focused="true"/>
+    <item android:drawable="@android:drawable/ic_dialog_info" android:state_hovered="true"/>
+    <item android:drawable="@drawable/arrow_icon"/> <!-- Replace arrow_icon with your original drawable for not hovered state -->
+</selector>

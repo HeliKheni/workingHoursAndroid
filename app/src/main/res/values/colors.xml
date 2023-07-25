@@ -12,4 +12,6 @@
     <color name="sky">#00FFC4</color>
     <color name="orange">#FFD603</color>
     <color name="rich_black">#505e23</color>
+    <color name="red">#ff0000</color>
+    <color name="darker_gray">#A9A9A9</color>
 </resources>

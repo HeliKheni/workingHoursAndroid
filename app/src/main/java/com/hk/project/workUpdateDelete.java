@@ -11,26 +11,32 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 public class workUpdateDelete extends AppCompatActivity {
 
 
-    private EditText etDescription, etJob, etDay, etStartTime, etEndTime, etWorkingTime;
+    private EditText etDescription, etDay, etStartTime, etEndTime, etWorkingTime;
+    private Spinner etJob;
     private Button btnUpdate, btnDelete, btnCancel;
     private String description, job, day, startTime, endTime, workingTime;
     private DatabaseHelper databaseHelper;
     private Calendar calendar;
     private long workingTimeInMinutes = 0;
+    private List<String> jobList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +45,7 @@ public class workUpdateDelete extends AppCompatActivity {
         databaseHelper = new DatabaseHelper(this);
         // Find the views
         etDescription = findViewById(R.id.etDescription);
-        etJob = findViewById(R.id.etJob);
+        etJob = findViewById(R.id.spJob);
         etDay = findViewById(R.id.etDay);
         etStartTime = findViewById(R.id.etStartTime);
         etEndTime = findViewById(R.id.etEndTime);
@@ -48,6 +54,18 @@ public class workUpdateDelete extends AppCompatActivity {
         btnUpdate = findViewById(R.id.btnUpdate);
         btnDelete = findViewById(R.id.btnDelete);
         btnCancel = findViewById(R.id.btnCancel);
+
+        // Populate job list
+        jobList.add("Job1");
+        jobList.add("Job2");
+        jobList.add("Job3");
+        jobList.add("Job4");
+        jobList.add("Job5");
+        // Create an adapter for the job list
+        ArrayAdapter<String> jobAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, jobList);
+        jobAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        etJob.setAdapter(jobAdapter);
+
         // Make the working time EditText non-editable
         etWorkingTime.setEnabled(false);
         // Get the data from the intent extras
@@ -62,7 +80,9 @@ public class workUpdateDelete extends AppCompatActivity {
 
             // Set the data to the EditTexts
             etDescription.setText(description);
-            etJob.setText(job);
+            int position = jobAdapter.getPosition(job);
+            etJob.setSelection(position);
+
             etDay.setText(day);
             etStartTime.setText(startTime);
             etEndTime.setText(endTime);
@@ -75,7 +95,8 @@ public class workUpdateDelete extends AppCompatActivity {
             public void onClick(View v) {
                 // Get the updated values from EditTexts
                 String updatedDescription = etDescription.getText().toString();
-                String updatedJob = etJob.getText().toString();
+                String updatedJob = etJob.getSelectedItem().toString();
+
                 String updatedDay = etDay.getText().toString();
                 String updatedStartTime = etStartTime.getText().toString();
                 String updatedEndTime = etEndTime.getText().toString();

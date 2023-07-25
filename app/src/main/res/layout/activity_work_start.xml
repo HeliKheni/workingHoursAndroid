@@ -84,8 +84,127 @@
         android:layout_weight="1"
         android:background="@android:color/transparent"
         android:src="@drawable/ic_play"
-        android:onClick="buttonPlusClicked" />
+        android:onClick="buttonStartButtonClicked" />
 
+    <!-- Add Stop Button and Work Details Layout -->
+    <LinearLayout
+        android:id="@+id/lyStopWork"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/lylast"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="16dp">
+
+      <!-- Work Description -->
+      <TextView
+          android:id="@+id/tvDescriptionLabel"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Work Description"
+          android:textSize="16sp"
+          android:textColor="@android:color/black"
+          android:layout_marginBottom="4dp" />
+
+      <EditText
+          android:id="@+id/etDescription"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:hint="Enter work description"
+          android:inputType="text"
+          android:layout_marginBottom="8dp" />
+
+      <!-- Job Dropdown -->
+      <TextView
+          android:id="@+id/tvJobLabel"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Job"
+          android:textSize="16sp"
+          android:textColor="@android:color/black"
+          android:layout_marginBottom="4dp" />
+
+      <Spinner
+          android:id="@+id/spJob"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="16dp" />
+
+      <LinearLayout
+          android:id="@+id/lytodaydate"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tvCurrentDatetitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginRight="20sp"
+            android:textColor="@android:color/black"
+            android:text="Today's Date"
+            android:layout_marginBottom="4dp"
+            />
+
+      <!-- Show Today's Date -->
+      <TextView
+          android:id="@+id/tvCurrentDate"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textSize="16sp"
+          android:textColor="@android:color/black"
+          android:text="Today's Date"
+          android:layout_marginBottom="4dp"
+          />
+
+
+      </LinearLayout>
+      <!-- Show Live Time Counts -->
+      <Chronometer
+          android:id="@+id/chronometer"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:format="HH:mm:ss"
+          android:textSize="16sp"
+          android:textColor="@android:color/black"
+          android:layout_marginBottom="8dp" />
+      <!-- Stop Button -->
+      <LinearLayout
+          android:id="@+id/lybuttons"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
+
+        <!-- Stop Button -->
+        <Button
+            android:id="@+id/btnStop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:layout_marginRight="20sp"
+            android:textSize="16sp"
+            android:textColor="@android:color/white"
+            android:background="@color/green"
+            android:onClick="buttonStopWorkClicked" />
+        <!-- Cancel Button -->
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:textSize="16sp"
+            android:layout_marginRight="20sp"
+            android:textColor="@android:color/white"
+            android:background="@color/red"
+            android:onClick="buttonCancelClicked" />
+
+
+
+      </LinearLayout>
+
+    </LinearLayout>
     <TextView
         android:id="@+id/tvlast"
         android:layout_width="wrap_content"

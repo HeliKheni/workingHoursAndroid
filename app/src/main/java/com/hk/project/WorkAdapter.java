@@ -1,7 +1,9 @@
 package com.hk.project;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -27,8 +29,32 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.WorkViewHolder
     @Override
     public WorkViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_work, parent, false);
+
+        // Attach the onTouchListener to the expandableLayout
+        LinearLayout expandableLayout = view.findViewById(R.id.expandableLayout);
+        expandableLayout.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                handleTouch(expandableLayout, event);
+                // Return true to consume the touch event
+                return true;
+            }
+        });
+
         return new WorkViewHolder(view);
     }
+    @SuppressLint("ResourceAsColor")
+    public void handleTouch(View view, MotionEvent event) {
+        // Check if the cursor is hovering over the expandableLayout
+        if (event.getAction() == MotionEvent.ACTION_HOVER_ENTER) {
+            // Change the background color here, for example:
+            view.setBackgroundColor(R.color.sky);
+        } else if (event.getAction() == MotionEvent.ACTION_HOVER_EXIT) {
+            // Change the background color back to the original color
+            view.setBackgroundColor(R.color.darker_gray);
+        }
+    }
+
 
     @Override
 
@@ -110,6 +136,8 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.WorkViewHolder
             tvTotalWorkingHours = itemView.findViewById(R.id.tvTotalWorkingHours);
             ivArrow = itemView.findViewById(R.id.ivArrow);
             expandableLayout = itemView.findViewById(R.id.expandableLayout);
+
+
 
         }
     }

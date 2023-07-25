@@ -82,18 +82,19 @@
             android:textColor="@android:color/black"
             android:textSize="16sp" />
 
-        <EditText
-            android:id="@+id/etJob"
+        <!-- Day Field -->
+
+        <Spinner
+            android:id="@+id/spJob"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Job Here"
-            android:textSize="16sp"
             android:background="@drawable/edit_text_border"
+
+            android:layout_marginTop="8dp"
             android:padding="8dp"
             android:textColor="@android:color/black"
-            android:layout_marginBottom="8dp" />
+            android:textSize="16sp" />
 
-        <!-- Day Field -->
         <TextView
             android:id="@+id/tvDayField"
             android:layout_width="wrap_content"
