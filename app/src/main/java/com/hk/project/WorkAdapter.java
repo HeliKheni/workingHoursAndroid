@@ -32,29 +32,8 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.WorkViewHolder
 
         // Attach the onTouchListener to the expandableLayout
         LinearLayout expandableLayout = view.findViewById(R.id.expandableLayout);
-        expandableLayout.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                handleTouch(expandableLayout, event);
-                // Return true to consume the touch event
-                return true;
-            }
-        });
-
         return new WorkViewHolder(view);
     }
-    @SuppressLint("ResourceAsColor")
-    public void handleTouch(View view, MotionEvent event) {
-        // Check if the cursor is hovering over the expandableLayout
-        if (event.getAction() == MotionEvent.ACTION_HOVER_ENTER) {
-            // Change the background color here, for example:
-            view.setBackgroundColor(R.color.sky);
-        } else if (event.getAction() == MotionEvent.ACTION_HOVER_EXIT) {
-            // Change the background color back to the original color
-            view.setBackgroundColor(R.color.darker_gray);
-        }
-    }
-
 
     @Override
 
@@ -78,10 +57,14 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.WorkViewHolder
         holder.ivArrow.setOnClickListener(v -> {
             expandedStates[position] = !expandedStates[position];
             notifyDataSetChanged();
+
+
         });
 
         // Set click listener for the expandableLayout
         holder.expandableLayout.setOnClickListener(v -> {
+            holder.expandableLayout.setBackgroundColor(v.getResources().getColor(R.color.sky));
+
             // Start a new activity to open a form for updating or deleting the data
             Intent intent = new Intent(v.getContext(), workUpdateDelete.class);
             intent.putExtra("description", workItem.getDescription());
@@ -136,8 +119,6 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.WorkViewHolder
             tvTotalWorkingHours = itemView.findViewById(R.id.tvTotalWorkingHours);
             ivArrow = itemView.findViewById(R.id.ivArrow);
             expandableLayout = itemView.findViewById(R.id.expandableLayout);
-
-
 
         }
     }

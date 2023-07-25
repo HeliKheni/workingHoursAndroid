@@ -84,17 +84,15 @@
 
         <!-- Day Field -->
 
+
         <Spinner
             android:id="@+id/spJob"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/edit_text_border"
-
             android:layout_marginTop="8dp"
-            android:padding="8dp"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
-
         <TextView
             android:id="@+id/tvDayField"
             android:layout_width="wrap_content"
