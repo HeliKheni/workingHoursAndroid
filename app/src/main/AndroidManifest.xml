@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.hk.project" >
 
     <application
         android:allowBackup="true"
@@ -11,7 +12,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Project"
-        tools:targetApi="31">
+        tools:targetApi="31" >
+        <activity
+            android:name=".FooterBar"
+            android:exported="false" />
+        <activity
+            android:name=".addJob"
+            android:exported="false" />
+        <activity
+            android:name=".editJob"
+            android:exported="false" />
+        <activity
+            android:name=".jobsManagement"
+            android:exported="false" />
         <activity
             android:name=".workUpdateDelete"
             android:exported="false" />
@@ -31,7 +44,7 @@
 
         <activity
             android:name=".workStart"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

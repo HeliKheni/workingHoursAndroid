@@ -36,7 +36,7 @@ public class workUpdateDelete extends AppCompatActivity {
     private DatabaseHelper databaseHelper;
     private Calendar calendar;
     private long workingTimeInMinutes = 0;
-    private String[] jobList  = {"Job 1", "Job 2", "Job 3", "Job 4", "Job 5"};
+   // private String[] jobList  = {"Job 1", "Job 2", "Job 3", "Job 4", "Job 5"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,9 +55,11 @@ public class workUpdateDelete extends AppCompatActivity {
         btnDelete = findViewById(R.id.btnDelete);
         btnCancel = findViewById(R.id.btnCancel);
         // Create an adapter for the job list
-        ArrayAdapter<String> jobAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, jobList);
-        jobAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        etJob.setAdapter(jobAdapter);
+        // Create an ArrayAdapter using the job titles from the database and set it to the Spinner
+        List<String> jobTitles = DatabaseHelper.getInstance(this).getAllJobTitles();
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, jobTitles);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        etJob.setAdapter(adapter);
 
         // Make the working time EditText non-editable
         etWorkingTime.setEnabled(false);
@@ -74,19 +76,10 @@ public class workUpdateDelete extends AppCompatActivity {
             // Set the data to the EditTexts
             etDescription.setText(description);
             // Find the index of the old job value in the jobList array using equalsIgnoreCase
-            int jobIndex = -1;
-            for (int i = 0; i < jobList.length; i++) {
-                if (jobList[i].equalsIgnoreCase(job)) {
-                    jobIndex = i;
-                    break;
-                }
-            }
-
+            int jobIndex = jobTitles.indexOf(job);
             if (jobIndex >= 0) {
-                // Set the selected item in the Spinner (job dropdown)
                 etJob.setSelection(jobIndex);
             }
-
 
             etDay.setText(day);
             etStartTime.setText(startTime);
@@ -298,7 +291,7 @@ public class workUpdateDelete extends AppCompatActivity {
             };
 
             // Update the data in the database
-            database.update(DatabaseHelper.TABLE_NAME, values, selection, selectionArgs);
+            database.update(DatabaseHelper.TABLE_TIME_ENTRIES, values, selection, selectionArgs);
 
             // Close the database
             database.close();
@@ -350,7 +343,7 @@ public class workUpdateDelete extends AppCompatActivity {
             };
 
             // Delete the data from the database
-            database.delete(DatabaseHelper.TABLE_NAME, selection, selectionArgs);
+            database.delete(DatabaseHelper.TABLE_TIME_ENTRIES, selection, selectionArgs);
 
             // Close the database
             database.close();

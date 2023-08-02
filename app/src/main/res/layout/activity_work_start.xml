@@ -182,12 +182,12 @@
             android:id="@+id/btnStop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Save"
+            android:text="Stop"
             android:layout_marginRight="20sp"
             android:textSize="16sp"
             android:textColor="@android:color/white"
             android:background="@color/green"
-            android:onClick="buttonStopWorkClicked" />
+            />
         <!-- Cancel Button -->
         <Button
             android:id="@+id/btnCancel"

@@ -27,7 +27,7 @@
             android:id="@+id/tvtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Edit Job Details "
+            android:text="Add Job Details"
             style="@style/AppTitleStyle" />
     </LinearLayout>
 
@@ -45,6 +45,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvTitle">
+
     <!-- Job Title -->
     <TextView
         android:id="@+id/jobTitleTextView"
@@ -133,14 +134,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:padding="8dp"/>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
     <!-- Default Task Switch -->
     <TextView
         android:id="@+id/defaultTaskTextView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Default Task"
         android:textSize="18sp"
@@ -152,60 +153,44 @@
         android:id="@+id/defaultTaskSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/defaultTaskTextView"
-        app:layout_constraintStart_toEndOf="@id/holidayRateEditText"
+        app:layout_constraintTop_toBottomOf="@id/holidayRateEditText"
+        app:layout_constraintStart_toEndOf="@id/defaultTaskTextView"
         android:padding="8dp"/>
+        </LinearLayout>
     </LinearLayout>
-    </LinearLayout>
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            app:layout_constraintTop_toBottomOf="@id/dataLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnCancel"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp" />
 
-    <Button
-        android:id="@+id/btnUpdate"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/button_selector"
-        android:text="Update"
-        android:textColor="@android:color/white"
-        android:layout_marginTop="10sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnDelete"
-        app:layout_constraintTop_toBottomOf="@+id/dataLayout" />
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            app:layout_constraintTop_toBottomOf="@id/dataLayout"
+            app:layout_constraintStart_toEndOf="@+id/btnSave"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:onClick="buttonCancelClicked"/>
 
-    <Button
-        android:id="@+id/btnDelete"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/button_selector"
-        android:text="Delete"
-        android:layout_marginTop="10sp"
-        android:textColor="@android:color/white"
-        app:layout_constraintStart_toEndOf="@+id/btnUpdate"
-        app:layout_constraintEnd_toStartOf="@+id/btnCancel"
-        app:layout_constraintTop_toBottomOf="@+id/dataLayout" />
 
-    <Button
-        android:id="@+id/btnCancel"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/button_selector"
-        android:text="Cancel"
-        android:layout_marginTop="10sp"
-        android:textColor="@android:color/white"
-        app:layout_constraintStart_toEndOf="@+id/btnDelete"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dataLayout" />
+        <!-- Include Footer -->
+        <include
+            android:id="@+id/footer"
+            layout="@layout/footer_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
-    <!-- Include Footer -->
-    <include
-        android:id="@+id/footer"
-        layout="@layout/footer_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,6 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -21,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -29,8 +31,6 @@ import java.util.List;
 import java.util.Locale;
 
 public class workStart extends AppCompatActivity {
-
-
     private RecyclerView recyclerView;
     private WorkAdapter workAdapter;
     private boolean isWorking = false;
@@ -141,10 +141,73 @@ public class workStart extends AppCompatActivity {
                 }
             }
         });
-
+        footerAllButtonClicked();
     }
 
+    private void footerAllButtonClicked() {
+        // Find the FooterBar views and set click listeners
+        View jobsButton = findViewById(R.id.jobs);
+        View homeButton = findViewById(R.id.home);
+        View settingsButton = findViewById(R.id.setting);
+        View reportsButton = findViewById(R.id.analytics);
+        View calendarButton = findViewById(R.id.cal);
 
+        // Set click listeners for FooterBar buttons
+        jobsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buttonJobClicked(v);
+            }
+        });
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buttonHomeClicked(v);
+            }
+        });
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buttonSettingsClicked(v);
+            }
+        });
+        reportsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buttonReportsClicked(v);
+            }
+        });
+        calendarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buttonCalenderClicked(v);
+            }
+        });
+    }
+
+    public void buttonJobClicked(View view) {
+        Toast.makeText(this, "job clicked", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(this, jobsManagement.class);
+        startActivity(intent);
+    }
+    public void buttonSettingsClicked(View view) {
+        Toast.makeText(this, "setting clicked", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(this, settings.class);
+        startActivity(intent);
+    }
+    public void buttonReportsClicked(View view) {
+        Intent intent = new Intent(this, Reports.class);
+        startActivity(intent);
+    }
+    public void buttonCalenderClicked(View view) {
+        Intent intent = new Intent(this, CalenderViewActivity.class);
+        startActivity(intent);
+    }
+    public void buttonHomeClicked(View view) {
+        Toast.makeText(this, "home clicked", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(this, workStart.class);
+        startActivity(intent);
+    }
     private void saveWorkDataToDatabase() {
         // Get the work details entered by the user
         String description = etDescription.getText().toString();
@@ -165,7 +228,7 @@ public class workStart extends AppCompatActivity {
         values.put(DatabaseHelper.COLUMN_START_TIME, startTime);
         values.put(DatabaseHelper.COLUMN_END_TIME, endTime);
         values.put(DatabaseHelper.COLUMN_WORKING_TIME, workingTime);
-        database.insert(DatabaseHelper.TABLE_NAME, null, values);
+        database.insert(DatabaseHelper.TABLE_TIME_ENTRIES, null, values);
         database.close();
         displayDataFromSQLite();
     }
@@ -249,7 +312,7 @@ public class workStart extends AppCompatActivity {
 
         // Perform the query to retrieve the data
         Cursor cursor = database.query(
-                DatabaseHelper.TABLE_NAME,
+                DatabaseHelper.TABLE_TIME_ENTRIES,
                 projection,
                 selection,
                 selectionArgs,

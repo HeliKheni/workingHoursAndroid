@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:orientation="horizontal"
-        android:padding="10sp">
-
-<LinearLayout
-    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:layout_gravity="center"
-    android:layout_marginLeft="15dp">
+    tools:context=".FooterBar"
+    android:background="@color/colorPrimary"
+    android:orientation="horizontal"
+    android:padding="10sp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_marginLeft="15dp"
+        android:onClick="buttonCalenderClicked">
 
         <ImageButton
             android:id="@+id/cal"
@@ -22,130 +25,143 @@
             android:src="@drawable/calendar_icon"
             android:background="@android:color/transparent"
             android:scaleType="fitCenter"
-            android:onClick="calenderPage"
+            android:onClick="buttonCalenderClicked"
             />
 
         <TextView
+            android:id="@+id/tvcal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Calendar"
             android:textSize="17sp"
             android:textStyle="bold"
-            android:onClick="calenderPage">
+            >
 
         </TextView>
 
 
-</LinearLayout>
-        <LinearLayout
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_marginLeft="30dp"
+        >
+
+        <ImageButton
+            android:id="@+id/jobs"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/jobs_icon"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+
+            />
+
+        <TextView
+            android:id="@+id/tvjobs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center"
-            android:layout_marginLeft="30dp">
-
-                <ImageButton
-                    android:id="@+id/jobs"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:src="@drawable/jobs_icon"
-                    android:background="@android:color/transparent"
-                    android:scaleType="fitCenter"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Jobs"
-                    android:textSize="15sp"
-                    android:textStyle="bold">
-                </TextView>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center"
-            android:layout_marginLeft="30dp"
+            android:text="Jobs"
+            android:textSize="15sp"
+            android:textStyle="bold"
 
             >
+        </TextView>
 
-                <ImageButton
-                    android:id="@+id/home"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:src="@drawable/home_icon"
-                    android:background="@android:color/transparent"
-                    android:scaleType="fitCenter"
-                    />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_marginLeft="30dp"
+        android:onClick="buttonHomeClicked"
+        >
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Home"
-                    android:textSize="15sp"
-                    android:textStyle="bold">
-                </TextView>
+        <ImageButton
+            android:id="@+id/home"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/home_icon"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            android:onClick="buttonHomeClicked"
+            />
 
-        </LinearLayout>
-
-
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/tvhome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center"
-            android:layout_marginLeft="30dp">
+            android:text="Home"
+            android:textSize="15sp"
+            android:textStyle="bold">
+        </TextView>
 
-                <ImageButton
-                    android:id="@+id/setting"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:src="@drawable/setting_icon"
-                    android:background="@android:color/transparent"
-                    android:scaleType="fitCenter"
-                    />
+    </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Setting"
-                    android:textSize="15sp"
-                    android:textStyle="bold">
-                </TextView>
 
-        </LinearLayout>
 
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_marginLeft="30dp"
+        android:onClick="buttonSettingsClicked">
+
+        <ImageButton
+            android:id="@+id/setting"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/setting_icon"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            android:onClick="buttonSettingsClicked"
+            />
+
+        <TextView
+            android:id="@+id/tvsetting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center"
-            android:layout_marginLeft="30dp">
+            android:text="Setting"
+            android:textSize="15sp"
+            android:textStyle="bold">
+        </TextView>
 
-                <ImageButton
-                    android:id="@+id/analytics"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:src="@drawable/analytics_icon"
-                    android:background="@android:color/transparent"
-                    android:scaleType="fitCenter"
-                    />
+    </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Report"
-                    android:textSize="15sp"
-                    android:textStyle="bold">
-                </TextView>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_marginLeft="30dp"
+        android:onClick="buttonReportsClicked">
 
-        </LinearLayout>
+        <ImageButton
+            android:id="@+id/analytics"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/analytics_icon"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            android:onClick="buttonReportsClicked"
+            />
 
+        <TextView
+            android:id="@+id/tvanalytics"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Report"
+            android:textSize="15sp"
+            android:textStyle="bold">
+        </TextView>
+
+    </LinearLayout>
 </LinearLayout>

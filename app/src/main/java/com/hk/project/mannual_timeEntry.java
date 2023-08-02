@@ -21,6 +21,7 @@ import android.widget.Toast;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 
@@ -57,15 +58,29 @@ public class mannual_timeEntry extends AppCompatActivity {
         tvWorkingTime.setEnabled(false);
 
         // Temporary fixed data for the job dropdown
-        String[] jobOptions = {"Job 1", "Job 2", "Job 3", "Job 4", "Job 5"};
+       // String[] jobOptions = {"Job 1", "Job 2", "Job 3", "Job 4", "Job 5"};
 
         // Find the Spinner for the job dropdown
         spJob= findViewById(R.id.spJob);
+        // Access the defaultJob variable from AppData
 
-        // Create an ArrayAdapter using the temporary fixed data and set it to the Spinner
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, jobOptions);
+       // String defaultJob = AppData.getInstance().getDefaultJob();
+       // Log.d("MannualTimeEntry", "Default Job Title: " + defaultJob);
+
+        // Create an ArrayAdapter using the job titles from the database and set it to the Spinner
+        List<String> jobTitles = DatabaseHelper.getInstance(this).getAllJobTitles();
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, jobTitles);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spJob.setAdapter(adapter);
+
+        // Set the default job title as the selected item in the Spinner
+      /*  if (defaultJob != null && !defaultJob.isEmpty()) {
+
+            int position = adapter.getPosition(defaultJob);
+            Log.d("MannualTimeEntry", "Position to Set: " + position);
+            spJob.setSelection(position);
+
+        }*/
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -227,7 +242,7 @@ public class mannual_timeEntry extends AppCompatActivity {
             values.put(DatabaseHelper.COLUMN_WORKING_TIME, workingTime);
 
             // Insert the data into the table
-            long newRowId = database.insert(DatabaseHelper.TABLE_NAME, null, values);
+            long newRowId = database.insert(DatabaseHelper.TABLE_TIME_ENTRIES, null, values);
 
             // Check if the insertion was successful
             if (newRowId != -1) {
