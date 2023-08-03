@@ -61,31 +61,6 @@
         android:textSize="20sp"
         />
 
-    <!-- Time Span Label -->
-    <TextView
-        android:id="@+id/timespanLabelTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Time Span:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/jobDropdown"
-        android:layout_marginStart="16dp"
-        android:textSize="20sp" />
-
-    <!-- Time Span Dropdown - make spinner -->
-    <Spinner
-        android:id="@+id/timespanDropdown"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/timespanLabelTextView"
-        app:layout_constraintTop_toBottomOf="@id/jobDropdown"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp"
-        android:textSize="20sp"/>
-
     <!-- From Date Input -->
     <EditText
         android:id="@+id/editTextFromDate"
@@ -94,7 +69,7 @@
         android:hint="From"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/editTextToDate"
-        app:layout_constraintTop_toBottomOf="@id/timespanDropdown"
+        app:layout_constraintTop_toBottomOf="@id/jobDropdown"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginTop="16dp"
@@ -109,11 +84,10 @@
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@id/editTextFromDate"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/timespanDropdown"
+        app:layout_constraintTop_toBottomOf="@id/jobDropdown"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"/>
-
 
     <!-- Radio Buttons -->
         <RadioGroup
@@ -155,19 +129,6 @@
         app:layout_constraintTop_toBottomOf="@id/radioGroupType"
         android:onClick="onCalculateButtonClick" />
 
-    <!--   <ImageView
-           android:id="@+id/imageViewGraph"
-           android:layout_width="0dp"
-           android:layout_height="0dp"
-          android:background="@color/sky"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintTop_toBottomOf="@id/radioGroupType"
-
-       app:layout_constraintBottom_toTopOf="@id/textViewTotal"
-       android:layout_marginTop="16dp"
-       android:layout_marginBottom="16dp" />-->
-
     <TextView
         android:id="@+id/imageViewGraph"
         android:layout_width="0dp"
@@ -177,7 +138,8 @@
         app:layout_constraintTop_toBottomOf="@id/buttonCalculate"
         app:layout_constraintBottom_toTopOf="@id/textViewTotal"
         android:textSize="16sp"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/black"
+        android:textIsSelectable="true"/>
         <!-- Total Field -->
         <TextView
             android:id="@+id/textViewTotal"
@@ -189,7 +151,7 @@
             app:layout_constraintBottom_toTopOf="@id/footer"
             android:layout_marginTop="16dp"
             android:textSize="22sp" />
-    <!-- Footer -->
+
     <include
         android:id="@+id/footer"
         layout="@layout/footer_bar"

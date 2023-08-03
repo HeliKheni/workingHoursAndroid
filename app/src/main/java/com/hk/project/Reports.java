@@ -35,7 +35,6 @@ public class Reports extends AppCompatActivity {
 
     private DatabaseHelper databaseHelper;
     private Spinner jobDropdown;
-    private Spinner timespanDropdown;
     private EditText editTextFromDate;
     private EditText editTextToDate;
     private RadioGroup radioGroupType;
@@ -59,7 +58,7 @@ private TextView imageViewDetails;
 
         databaseHelper = DatabaseHelper.getInstance(this);
         jobDropdown = findViewById(R.id.jobDropdown);
-        timespanDropdown = findViewById(R.id.timespanDropdown);
+
         editTextFromDate = findViewById(R.id.editTextFromDate);
         editTextToDate = findViewById(R.id.editTextToDate);
         radioGroupType = findViewById(R.id.radioGroupType);
@@ -70,12 +69,6 @@ private TextView imageViewDetails;
         imageViewDetails = findViewById(R.id.imageViewGraph);
         // Populate the job dropdown with job titles from the database
         populateJobDropdown();
-
-        // Set up the ArrayAdapter for timespan dropdown with the predefined options
-        ArrayAdapter<String> timespanAdapter = new ArrayAdapter<>(
-                this, android.R.layout.simple_spinner_item, timespanOptions);
-        timespanAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        timespanDropdown.setAdapter(timespanAdapter);
 
         // Initialize the Calendar instance
         calendar = Calendar.getInstance();
@@ -129,7 +122,7 @@ private TextView imageViewDetails;
 
     // Method to update the date text in EditText
     private void updateDateText(EditText editText) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
         editText.setText(sdf.format(calendar.getTime()));
     }
     // Method to populate the job dropdown with job titles from the database
@@ -140,17 +133,13 @@ private TextView imageViewDetails;
         jobDropdown.setAdapter(adapter);
     }
 
-    // Method to update the total based on the selected criteria (job, timespan, job hours or money)
-    // Method to update the total based on the selected criteria (job, timespan, job hours, or money)
+
     private void updateTotal() {
-        Toast.makeText(this, "inside upadtetotal",Toast.LENGTH_LONG).show();
         String selectedJob = (String) jobDropdown.getSelectedItem();
-        String selectedTimespan = (String) timespanDropdown.getSelectedItem();
         String fromDate = editTextFromDate.getText().toString();
         String toDate = editTextToDate.getText().toString();
         int selectedRadioId = radioGroupType.getCheckedRadioButtonId();
         boolean isWorkingTimeSelected = selectedRadioId == R.id.radioButtonWorkingTime;
-        Toast.makeText(this, selectedJob + " " + fromDate+" "+toDate,Toast.LENGTH_LONG).show();
 
         if (selectedJob == null) {
             // If either job or timespan is not selected, show 0.00 as total
@@ -158,53 +147,70 @@ private TextView imageViewDetails;
             imageViewDetails.setText("");
             return;
         }
+
         // Get the job ID based on the selected job title
         int jobId = databaseHelper.findJobIdFromTitle(selectedJob);
-        Toast.makeText(this,"JobId "+jobId, Toast.LENGTH_LONG).show();
 
         // Retrieve hourly rate for the selected job from the database using the job ID
         JobDetails jobDetails = databaseHelper.getJobDetails(jobId);
-          if (jobDetails == null) {
+        if (jobDetails == null) {
             // If job details not found, show 0.00 as total
-            Toast.makeText(this,"job details null",Toast.LENGTH_LONG).show();
+            Log.d("DatabaseHelper", "Job details not found for ID: " + jobId);
             textViewTotal.setText("Total: $0.00");
             imageViewDetails.setText("");
             return;
         }
+
         // Get the hourly rate for the selected job
         double hourlyRate = Double.parseDouble(jobDetails.getHourlyRate());
-        Toast.makeText(this,"rate: "+hourlyRate, Toast.LENGTH_LONG).show();
 
+        // Get the time entries for the selected job and timespan
         List<WorkItem> timeEntries = databaseHelper.getTimeEntriesForJobWithinTimespan(selectedJob, fromDate, toDate);
-         // Calculate the total hours worked for the selected job
+
+        // Calculate the total hours worked and total earnings for the selected job and timespan
         double totalHours = 0.0;
         StringBuilder jobDetailsStringBuilder = new StringBuilder();
-        if(timeEntries == null)
-        {
-            Toast.makeText(this, "timeentriesnull", Toast.LENGTH_SHORT).show();
-        }
-        for (WorkItem timeEntry : timeEntries) {
-            Toast.makeText(this, timeEntry.getDescription() + " "+ timeEntry.getWorkingTime(),Toast.LENGTH_LONG).show();
 
-            totalHours += Double.parseDouble(timeEntry.getWorkingTime());
-            jobDetailsStringBuilder.append("Shift Title: ").append(timeEntry.getDescription())
-                    .append("\nDate: ").append(timeEntry.getDay())
-                    .append("\nHours: ").append(timeEntry.getWorkingTime()).append("\n\n");
+        for (WorkItem timeEntry : timeEntries) {
+            try {
+                // Parse the working time to total minutes (hours * 60 + minutes)
+                String[] workingTimeParts = timeEntry.getWorkingTime().split(":");
+                int hours = Integer.parseInt(workingTimeParts[0]);
+                int minutes = Integer.parseInt(workingTimeParts[1]);
+                int totalMinutes = hours * 60 + minutes;
+
+                totalHours += totalMinutes / 60.0; // Convert total minutes back to hours
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+
+            // Build the job details string
+            jobDetailsStringBuilder.append("<b>Shift Title:</b> ").append(timeEntry.getDescription()).append("<br>")
+                    .append("<b>Date:</b> ").append(timeEntry.getDay()).append("<br>")
+                    .append("<b>Hours:</b> ").append(timeEntry.getWorkingTime()).append("<br><br>");
+
         }
 
         // Calculate the total earnings based on the selected criteria
-        double totalEarnings = isWorkingTimeSelected ? totalHours * hourlyRate : 0.0;
+        double totalEarnings = totalHours * hourlyRate;
 
-        // Update the textViewTotal with the calculated total earnings
-        textViewTotal.setText(String.format(Locale.US, "Total: $%.2f", totalEarnings));
-
+        if(isWorkingTimeSelected)
+        {
+            textViewTotal.setText("Total Hour:"+ totalHours);
+        }
+        else {
+            // Update the textViewTotal with the calculated total earnings
+            textViewTotal.setText(String.format(Locale.US, "Total Earnings: $%.2f", totalEarnings));
+        }
         // Create a formatted string containing the job details and display it in imageViewDetails
+        //String jobDetailsString = String.format(jobDetailsStringBuilder.toString());
         String jobDetailsString = String.format(Locale.US,
-                "<b>Job:</b> %s<br><b>Total Hours:</b> %.2f<br><b>Total Earnings:</b> $%.2f<br><br>%s",
-                selectedJob, totalHours, totalEarnings, jobDetailsStringBuilder.toString());
-
+                "<b>Job:</b> %s<br><b>Hourly Rate:</b> %.2f<br><br>%s",
+                selectedJob, hourlyRate, jobDetailsStringBuilder.toString());
+        // Set the formatted string as HTML text to imageViewDetails
         imageViewDetails.setText(Html.fromHtml(jobDetailsString, Html.FROM_HTML_MODE_LEGACY));
     }
+
 
     // Method to retrieve time entries for a selected job within a specified timespan
 

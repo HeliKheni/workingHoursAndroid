@@ -65,16 +65,20 @@ public class workStart extends AppCompatActivity {
         ivstart = findViewById(R.id.ivstart);
         lyStopWork = findViewById(R.id.lyStopWork);
 
-        // Populate job list
-        jobList.add("Job1");
-        jobList.add("Job2");
-        jobList.add("Job3");
-        jobList.add("Job4");
-        jobList.add("Job5");
-        // Create an adapter for the job list
-        ArrayAdapter<String> jobAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, jobList);
-        jobAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spJob.setAdapter(jobAdapter);
+        // Access the default job title from the database and set it as the selected item in the Spinner
+        String defaultJob = DatabaseHelper.getInstance(this).getDefaultJob();
+
+        // Create an ArrayAdapter using the job titles from the database and set it to the Spinner
+        List<String> jobTitles = DatabaseHelper.getInstance(this).getAllJobTitles();
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, jobTitles);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spJob.setAdapter(adapter);
+
+        // Set the default job title as the selected item in the Spinner
+        if (defaultJob != null && !defaultJob.isEmpty()) {
+            int position = adapter.getPosition(defaultJob);
+            spJob.setSelection(position);
+        }
 
         // Call the method to display the data from SQLite
         displayDataFromSQLite();
@@ -361,7 +365,7 @@ public class workStart extends AppCompatActivity {
 
 
     private String getCurrentDate() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.getDefault());
         return sdf.format(Calendar.getInstance().getTime());
     }
 

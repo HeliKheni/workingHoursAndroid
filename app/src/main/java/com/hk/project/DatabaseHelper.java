@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -151,12 +152,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return defaultJob;
     }
 
+    @SuppressLint("Range")
     public List<WorkItem> getTimeEntriesForJobWithinTimespan(String jobId, String fromDate, String toDate) {
         List<WorkItem> timeEntries = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
 
         String[] projection = {
-                COLUMN_ID,
                 COLUMN_JOB,
                 COLUMN_DESCRIPTION,
                 COLUMN_DAY,
@@ -172,26 +173,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if (cursor != null && cursor.moveToFirst()) {
             do {
-               // @SuppressLint("Range") String id = cursor.getString(cursor.getColumnIndex(COLUMN_ID));
+                // @SuppressLint("Range") String id = cursor.getString(cursor.getColumnIndex(COLUMN_ID));
                 @SuppressLint("Range") String job = cursor.getString(cursor.getColumnIndex(COLUMN_JOB));
                 @SuppressLint("Range") String description = cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPTION));
                 @SuppressLint("Range") String day = cursor.getString(cursor.getColumnIndex(COLUMN_DAY));
                 @SuppressLint("Range") String startTime = cursor.getString(cursor.getColumnIndex(COLUMN_START_TIME));
                 @SuppressLint("Range") String endTime = cursor.getString(cursor.getColumnIndex(COLUMN_END_TIME));
                 @SuppressLint("Range") String workingTime = cursor.getString(cursor.getColumnIndex(COLUMN_WORKING_TIME));
-
-                WorkItem workItem = new WorkItem( job, description, day, startTime, endTime, workingTime);
+               WorkItem workItem = new WorkItem( description,job, day, startTime, endTime, workingTime);
                 timeEntries.add(workItem);
             } while (cursor.moveToNext());
 
             cursor.close();
         }
 
-        Log.d("DatabaseHelper", "Query: " + db.compileStatement("SELECT * FROM " + TABLE_TIME_ENTRIES + " WHERE " + selection).toString());
+     //   Log.d("DatabaseHelper", "Query: " + db.compileStatement("SELECT * FROM " + TABLE_TIME_ENTRIES + " WHERE " + selection).toString());
 
-        for (WorkItem item : timeEntries) {
-            Log.d("DatabaseHelper", "Time Entry: " + item.getDescription() + " " + item.getWorkingTime());
-        }
+//        for (WorkItem item : timeEntries) {
+//            Log.d("DatabaseHelper", "Time Entry: " + item.getDescription() + " " + item.getWorkingTime());
+//        }
 
         return timeEntries;
     }
@@ -215,9 +215,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return jobId;
     }
-
-
-
-
-
 }
