@@ -64,8 +64,8 @@ public class mannual_timeEntry extends AppCompatActivity {
         spJob= findViewById(R.id.spJob);
         // Access the defaultJob variable from AppData
 
-       // String defaultJob = AppData.getInstance().getDefaultJob();
-       // Log.d("MannualTimeEntry", "Default Job Title: " + defaultJob);
+        // Access the default job title from the database and set it as the selected item in the Spinner
+        String defaultJob = DatabaseHelper.getInstance(this).getDefaultJob();
 
         // Create an ArrayAdapter using the job titles from the database and set it to the Spinner
         List<String> jobTitles = DatabaseHelper.getInstance(this).getAllJobTitles();
@@ -74,13 +74,10 @@ public class mannual_timeEntry extends AppCompatActivity {
         spJob.setAdapter(adapter);
 
         // Set the default job title as the selected item in the Spinner
-      /*  if (defaultJob != null && !defaultJob.isEmpty()) {
-
+        if (defaultJob != null && !defaultJob.isEmpty()) {
             int position = adapter.getPosition(defaultJob);
-            Log.d("MannualTimeEntry", "Position to Set: " + position);
             spJob.setSelection(position);
-
-        }*/
+        }
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override

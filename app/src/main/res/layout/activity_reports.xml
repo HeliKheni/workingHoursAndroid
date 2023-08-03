@@ -16,86 +16,104 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
+    <LinearLayout
+        android:id="@+id/textViewTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        android:layout_marginTop="10sp"
+        android:background="@color/sky"
+        android:gravity="center_horizontal">
 
-        <!-- Page Title -->
         <TextView
-            android:id="@+id/textViewTitle"
+            android:id="@+id/tvtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Report and Analytics"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/header"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"/>
+            android:text="Report and Analytics "
+            style="@style/AppTitleStyle" />
+    </LinearLayout>
 
-        <!-- Date Range Inputs -->
-        <EditText
-            android:id="@+id/editTextFromDate"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="From"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/editTextToDate"
-            app:layout_constraintTop_toBottomOf="@id/textViewTitle"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="16dp"
-            android:textSize="20sp"/>
+    <!-- Job Label -->
+    <TextView
+        android:id="@+id/jobLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Job:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewTitle"
+        app:layout_constraintEnd_toStartOf="@id/jobDropdown"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:textSize="20sp" />
 
-        <EditText
-            android:id="@+id/editTextToDate"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="To"
-            android:textSize="20sp"
-            app:layout_constraintStart_toEndOf="@id/editTextFromDate"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewTitle"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="16dp"/>
+    <!-- Job Dropdown - make spinner -->
+    <Spinner
+        android:id="@+id/jobDropdown"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/jobLabelTextView"
+        app:layout_constraintTop_toBottomOf="@id/textViewTitle"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        android:textSize="20sp"
+        />
 
     <!-- Time Span Label -->
     <TextView
-        android:id="@+id/textViewTimeSpanLabel"
+        android:id="@+id/timespanLabelTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TimeSpan:"
+        android:layout_marginTop="16dp"
+        android:text="Time Span:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editTextFromDate"
+        app:layout_constraintTop_toBottomOf="@id/jobDropdown"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:textSize="20sp"/>
+        android:textSize="20sp" />
 
-    <!-- Time Span Dropdown - make spinner-->
-    <TextView
-        android:id="@+id/spinnerTimeSpan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TimeSpan"
-        app:layout_constraintStart_toEndOf="@id/textViewTimeSpanLabel"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editTextFromDate"
-        android:layout_marginTop="16dp"
-
-        android:textSize="20sp"/>
-   <!-- <Spinner
-        android:id="@+id/spinnerTimeSpan"
+    <!-- Time Span Dropdown - make spinner -->
+    <Spinner
+        android:id="@+id/timespanDropdown"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:entries="@array/time_span_options"
-        app:layout_constraintStart_toEndOf="@id/textViewTimeSpanLabel"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editTextFromDate"
+        app:layout_constraintStart_toEndOf="@id/timespanLabelTextView"
+        app:layout_constraintTop_toBottomOf="@id/jobDropdown"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="16dp"
+        android:textSize="20sp"/>
+
+    <!-- From Date Input -->
+    <EditText
+        android:id="@+id/editTextFromDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="From"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/editTextToDate"
+        app:layout_constraintTop_toBottomOf="@id/timespanDropdown"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginTop="16dp"
-        android:padding="8dp"
-        />
--->
+        android:textSize="20sp"/>
+
+    <!-- To Date Input -->
+    <EditText
+        android:id="@+id/editTextToDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="To"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@id/editTextFromDate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/timespanDropdown"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"/>
+
 
     <!-- Radio Buttons -->
         <RadioGroup
@@ -104,9 +122,11 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/spinnerTimeSpan"
+            app:layout_constraintTop_toBottomOf="@id/editTextFromDate"
             android:layout_marginTop="16dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp">
 
             <RadioButton
                 android:id="@+id/radioButtonWorkingTime"
@@ -120,23 +140,44 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                android:text="Earnings" />
+                android:text="Earnings"
+                android:layout_marginStart="30sp"/>
 
         </RadioGroup>
+    <Button
+        android:id="@+id/buttonCalculate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calculate"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/radioGroupType"
+        android:onClick="onCalculateButtonClick" />
 
-    <ImageView
+    <!--   <ImageView
+           android:id="@+id/imageViewGraph"
+           android:layout_width="0dp"
+           android:layout_height="0dp"
+          android:background="@color/sky"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintTop_toBottomOf="@id/radioGroupType"
+
+       app:layout_constraintBottom_toTopOf="@id/textViewTotal"
+       android:layout_marginTop="16dp"
+       android:layout_marginBottom="16dp" />-->
+
+    <TextView
         android:id="@+id/imageViewGraph"
         android:layout_width="0dp"
         android:layout_height="0dp"
-       android:background="@color/sky"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/radioGroupType"
-
-    app:layout_constraintBottom_toTopOf="@id/textViewTotal"
-    android:layout_marginTop="16dp"
-    android:layout_marginBottom="16dp" />
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonCalculate"
+        app:layout_constraintBottom_toTopOf="@id/textViewTotal"
+        android:textSize="16sp"
+        android:textColor="@android:color/black" />
         <!-- Total Field -->
         <TextView
             android:id="@+id/textViewTotal"
@@ -147,7 +188,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@id/footer"
             android:layout_marginTop="16dp"
-            android:textSize="18sp" />
+            android:textSize="22sp" />
     <!-- Footer -->
     <include
         android:id="@+id/footer"

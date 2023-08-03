@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,7 +72,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Example: if (oldVersion < newVersion) { ... }
     }
 
-    public JobDetails getJobDetails(int id) {
+   public JobDetails getJobDetails(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
         JobDetails jobDetails = null;
 
@@ -106,6 +107,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return jobDetails;
     }
 
+
     public List<String> getAllJobTitles() {
         List<String> jobTitles = new ArrayList<>();
 
@@ -129,6 +131,91 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return jobTitles;
     }
+
+    @SuppressLint("Range")
+    public String getDefaultJob() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String defaultJob = null;
+
+        String[] projection = {COLUMN_JOB};
+        String selection = COLUMN_DEFAULT_TASK + " = ?";
+        String[] selectionArgs = {String.valueOf(1)}; // 1 represents true (default task)
+
+        Cursor cursor = db.query(TABLE_JOB_DETAILS, projection, selection, selectionArgs, null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            defaultJob = cursor.getString(cursor.getColumnIndex(COLUMN_JOB));
+            cursor.close();
+        }
+
+        return defaultJob;
+    }
+
+    public List<WorkItem> getTimeEntriesForJobWithinTimespan(String jobId, String fromDate, String toDate) {
+        List<WorkItem> timeEntries = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String[] projection = {
+                COLUMN_ID,
+                COLUMN_JOB,
+                COLUMN_DESCRIPTION,
+                COLUMN_DAY,
+                COLUMN_START_TIME,
+                COLUMN_END_TIME,
+                COLUMN_WORKING_TIME
+        };
+
+        String selection = COLUMN_JOB + " = ? AND " + COLUMN_DAY + " >= ? AND " + COLUMN_DAY + " <= ?";
+        String[] selectionArgs = {jobId, fromDate, toDate};
+
+        Cursor cursor = db.query(TABLE_TIME_ENTRIES, projection, selection, selectionArgs, null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+               // @SuppressLint("Range") String id = cursor.getString(cursor.getColumnIndex(COLUMN_ID));
+                @SuppressLint("Range") String job = cursor.getString(cursor.getColumnIndex(COLUMN_JOB));
+                @SuppressLint("Range") String description = cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPTION));
+                @SuppressLint("Range") String day = cursor.getString(cursor.getColumnIndex(COLUMN_DAY));
+                @SuppressLint("Range") String startTime = cursor.getString(cursor.getColumnIndex(COLUMN_START_TIME));
+                @SuppressLint("Range") String endTime = cursor.getString(cursor.getColumnIndex(COLUMN_END_TIME));
+                @SuppressLint("Range") String workingTime = cursor.getString(cursor.getColumnIndex(COLUMN_WORKING_TIME));
+
+                WorkItem workItem = new WorkItem( job, description, day, startTime, endTime, workingTime);
+                timeEntries.add(workItem);
+            } while (cursor.moveToNext());
+
+            cursor.close();
+        }
+
+        Log.d("DatabaseHelper", "Query: " + db.compileStatement("SELECT * FROM " + TABLE_TIME_ENTRIES + " WHERE " + selection).toString());
+
+        for (WorkItem item : timeEntries) {
+            Log.d("DatabaseHelper", "Time Entry: " + item.getDescription() + " " + item.getWorkingTime());
+        }
+
+        return timeEntries;
+    }
+
+    // Method to find the job ID based on the selected job title
+    @SuppressLint("Range")
+    public int findJobIdFromTitle(String selectedJobTitle) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        int jobId = -1;
+
+        String[] projection = {COLUMN_ID};
+        String selection = COLUMN_JOB + " = ?";
+        String[] selectionArgs = {selectedJobTitle};
+
+        Cursor cursor = db.query(TABLE_JOB_DETAILS, projection, selection, selectionArgs, null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            jobId = cursor.getInt(cursor.getColumnIndex(COLUMN_ID));
+            cursor.close();
+        }
+
+        return jobId;
+    }
+
 
 
 
