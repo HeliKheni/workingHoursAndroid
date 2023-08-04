@@ -3,6 +3,7 @@ package com.hk.project;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.media.Image;
 import android.os.Bundle;
@@ -56,6 +57,7 @@ private TextView imageViewDetails;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reports);
 
+        footerAllButtonClicked();
         databaseHelper = DatabaseHelper.getInstance(this);
         jobDropdown = findViewById(R.id.jobDropdown);
 
@@ -210,9 +212,34 @@ private TextView imageViewDetails;
         // Set the formatted string as HTML text to imageViewDetails
         imageViewDetails.setText(Html.fromHtml(jobDetailsString, Html.FROM_HTML_MODE_LEGACY));
     }
-
-
-    // Method to retrieve time entries for a selected job within a specified timespan
+    private void footerAllButtonClicked() {
+        // Find the FooterBar views and set click listeners
+        int[] buttonIds = {R.id.jobs, R.id.home, R.id.analytics, R.id.cal};
+        for (int id : buttonIds) {
+            View button = findViewById(id);
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    handleButtonClick(v.getId());
+                }
+            });
+        }
+    }
+    private void handleButtonClick(int viewId) {
+        if (viewId == R.id.jobs) {
+            startActivity(jobsManagement.class);
+        } else if (viewId == R.id.home) {
+            startActivity(workStart.class);
+        } else if (viewId == R.id.analytics) {
+            startActivity(Reports.class);
+        } else if (viewId == R.id.cal) {
+            startActivity(CalenderViewActivity.class);
+        }
+    }
+    private void startActivity(Class<?> activityClass) {
+        Intent intent = new Intent(this, activityClass);
+        startActivity(intent);
+    }
 
 
 }

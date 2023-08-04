@@ -1,167 +1,116 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".FooterBar"
     android:background="@color/colorPrimary"
-    android:orientation="horizontal"
-    android:padding="10sp">
+    android:paddingBottom="10sp">
 
-    <LinearLayout
+    <ImageButton
+        android:id="@+id/home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:layout_marginLeft="15dp"
-        android:onClick="buttonCalenderClicked">
-
-        <ImageButton
-            android:id="@+id/cal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/calendar_icon"
-            android:background="@android:color/transparent"
-            android:scaleType="fitCenter"
-            android:onClick="buttonCalenderClicked"
-            />
-
-        <TextView
-            android:id="@+id/tvcal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Calendar"
-            android:textSize="17sp"
-            android:textStyle="bold"
-            >
-
-        </TextView>
-
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:layout_marginLeft="30dp"
-        >
-
-        <ImageButton
-            android:id="@+id/jobs"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/jobs_icon"
-            android:background="@android:color/transparent"
-            android:scaleType="fitCenter"
-
-            />
-
-        <TextView
-            android:id="@+id/tvjobs"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Jobs"
-            android:textSize="15sp"
-            android:textStyle="bold"
-
-            >
-        </TextView>
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:layout_marginLeft="30dp"
+        android:src="@drawable/home_icon"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
         android:onClick="buttonHomeClicked"
-        >
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/jobs"
+        app:layout_constraintEnd_toStartOf="@id/analytics"
+        />
 
-        <ImageButton
-            android:id="@+id/home"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/home_icon"
-            android:background="@android:color/transparent"
-            android:scaleType="fitCenter"
-            android:onClick="buttonHomeClicked"
-            />
-
-        <TextView
-            android:id="@+id/tvhome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Home"
-            android:textSize="15sp"
-            android:textStyle="bold">
-        </TextView>
-
-    </LinearLayout>
-
-
-
-    <LinearLayout
+    <TextView
+        android:id="@+id/tvhome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:layout_marginLeft="30dp"
-        android:onClick="buttonSettingsClicked">
+        android:text="Home"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_marginStart="5sp"
+        app:layout_constraintStart_toStartOf="@id/home"
+        app:layout_constraintTop_toBottomOf="@id/home"
+        />
 
-        <ImageButton
-            android:id="@+id/setting"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/setting_icon"
-            android:background="@android:color/transparent"
-            android:scaleType="fitCenter"
-            android:onClick="buttonSettingsClicked"
-            />
-
-        <TextView
-            android:id="@+id/tvsetting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Setting"
-            android:textSize="15sp"
-            android:textStyle="bold">
-        </TextView>
-
-    </LinearLayout>
-
-    <LinearLayout
+    <ImageButton
+        android:id="@+id/cal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:layout_marginLeft="30dp"
-        android:onClick="buttonReportsClicked">
+        android:src="@drawable/calendar_icon"
+        android:background="@android:color/transparent"
+        android:onClick="buttonCalenderClicked"
+        android:layout_marginStart="50sp"
+        android:paddingLeft="10sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        />
 
-        <ImageButton
-            android:id="@+id/analytics"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/analytics_icon"
-            android:background="@android:color/transparent"
-            android:scaleType="fitCenter"
-            android:onClick="buttonReportsClicked"
-            />
+    <TextView
+        android:id="@+id/tvcal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calendar"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:layout_marginEnd="5sp"
+        app:layout_constraintStart_toStartOf="@id/cal"
+        app:layout_constraintTop_toBottomOf="@id/cal"
+        />
 
-        <TextView
-            android:id="@+id/tvanalytics"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Report"
-            android:textSize="15sp"
-            android:textStyle="bold">
-        </TextView>
+    <ImageButton
+        android:id="@+id/jobs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/jobs_icon"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:onClick="buttonJobsClicked"
 
-    </LinearLayout>
-</LinearLayout>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/cal"
+        app:layout_constraintEnd_toStartOf="@id/home"
+        />
+
+    <TextView
+        android:id="@+id/tvjobs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jobs"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_marginStart="10sp"
+        app:layout_constraintStart_toStartOf="@id/jobs"
+        app:layout_constraintTop_toBottomOf="@id/jobs"
+        />
+
+
+
+    <ImageButton
+        android:id="@+id/analytics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/analytics_icon"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:onClick="buttonReportsClicked"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/home"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/tvanalytics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Report"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/analytics"
+        app:layout_constraintTop_toBottomOf="@id/analytics"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

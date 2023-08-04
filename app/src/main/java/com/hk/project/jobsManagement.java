@@ -24,7 +24,7 @@ public class jobsManagement extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.jobs_management);
-
+        footerAllButtonClicked();
         recyclerViewJobs = findViewById(R.id.recyclerViewJobs);
         recyclerViewJobs.setLayoutManager(new LinearLayoutManager(this));
 
@@ -79,5 +79,33 @@ public class jobsManagement extends AppCompatActivity {
         jobDetailsList.clear(); // Clear the list before fetching new data
         fetchJobDetailsFromDatabase();
         adapter.notifyDataSetChanged();
+    }
+    private void footerAllButtonClicked() {
+        // Find the FooterBar views and set click listeners
+        int[] buttonIds = {R.id.jobs, R.id.home, R.id.analytics, R.id.cal};
+        for (int id : buttonIds) {
+            View button = findViewById(id);
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    handleButtonClick(v.getId());
+                }
+            });
+        }
+    }
+    private void handleButtonClick(int viewId) {
+        if (viewId == R.id.jobs) {
+            startActivity(jobsManagement.class);
+        } else if (viewId == R.id.home) {
+            startActivity(workStart.class);
+        } else if (viewId == R.id.analytics) {
+            startActivity(Reports.class);
+        } else if (viewId == R.id.cal) {
+            startActivity(CalenderViewActivity.class);
+        }
+    }
+    private void startActivity(Class<?> activityClass) {
+        Intent intent = new Intent(this, activityClass);
+        startActivity(intent);
     }
 }

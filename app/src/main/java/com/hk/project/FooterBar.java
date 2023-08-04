@@ -42,11 +42,6 @@ public class FooterBar extends AppCompatActivity {
         Intent intent = new Intent(this, jobsManagement.class);
         startActivity(intent);
     }
-    public void buttonSettingsClicked(View view) {
-        Toast.makeText(this, "setting clicked", Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(this, settings.class);
-        startActivity(intent);
-    }
     public void buttonReportsClicked(View view) {
         Intent intent = new Intent(this, Reports.class);
         startActivity(intent);

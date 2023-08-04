@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
@@ -147,71 +148,35 @@ public class workStart extends AppCompatActivity {
         });
         footerAllButtonClicked();
     }
-
     private void footerAllButtonClicked() {
         // Find the FooterBar views and set click listeners
-        View jobsButton = findViewById(R.id.jobs);
-        View homeButton = findViewById(R.id.home);
-        View settingsButton = findViewById(R.id.setting);
-        View reportsButton = findViewById(R.id.analytics);
-        View calendarButton = findViewById(R.id.cal);
-
-        // Set click listeners for FooterBar buttons
-        jobsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                buttonJobClicked(v);
-            }
-        });
-        homeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                buttonHomeClicked(v);
-            }
-        });
-        settingsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                buttonSettingsClicked(v);
-            }
-        });
-        reportsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                buttonReportsClicked(v);
-            }
-        });
-        calendarButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                buttonCalenderClicked(v);
-            }
-        });
+        int[] buttonIds = {R.id.jobs, R.id.home, R.id.analytics, R.id.cal};
+        for (int id : buttonIds) {
+            View button = findViewById(id);
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    handleButtonClick(v.getId());
+                }
+            });
+        }
+    }
+    private void handleButtonClick(int viewId) {
+        if (viewId == R.id.jobs) {
+            startActivity(jobsManagement.class);
+        } else if (viewId == R.id.home) {
+            startActivity(workStart.class);
+        } else if (viewId == R.id.analytics) {
+            startActivity(Reports.class);
+        } else if (viewId == R.id.cal) {
+            startActivity(CalenderViewActivity.class);
+        }
+    }
+    private void startActivity(Class<?> activityClass) {
+        Intent intent = new Intent(this, activityClass);
+        startActivity(intent);
     }
 
-    public void buttonJobClicked(View view) {
-        Toast.makeText(this, "job clicked", Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(this, jobsManagement.class);
-        startActivity(intent);
-    }
-    public void buttonSettingsClicked(View view) {
-        Toast.makeText(this, "setting clicked", Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(this, settings.class);
-        startActivity(intent);
-    }
-    public void buttonReportsClicked(View view) {
-        Intent intent = new Intent(this, Reports.class);
-        startActivity(intent);
-    }
-    public void buttonCalenderClicked(View view) {
-        Intent intent = new Intent(this, CalenderViewActivity.class);
-        startActivity(intent);
-    }
-    public void buttonHomeClicked(View view) {
-        Toast.makeText(this, "home clicked", Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(this, workStart.class);
-        startActivity(intent);
-    }
     private void saveWorkDataToDatabase() {
         // Get the work details entered by the user
         String description = etDescription.getText().toString();
