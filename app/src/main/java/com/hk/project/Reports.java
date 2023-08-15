@@ -205,7 +205,6 @@ private TextView imageViewDetails;
             textViewTotal.setText(String.format(Locale.US, "Total Earnings: $%.2f", totalEarnings));
         }
         // Create a formatted string containing the job details and display it in imageViewDetails
-        //String jobDetailsString = String.format(jobDetailsStringBuilder.toString());
         String jobDetailsString = String.format(Locale.US,
                 "<b>Job:</b> %s<br><b>Hourly Rate:</b> %.2f<br><br>%s",
                 selectedJob, hourlyRate, jobDetailsStringBuilder.toString());
@@ -233,7 +232,7 @@ private TextView imageViewDetails;
         } else if (viewId == R.id.analytics) {
             startActivity(Reports.class);
         } else if (viewId == R.id.cal) {
-            startActivity(CalenderViewActivity.class);
+            startActivity(JobReminder.class);
         }
     }
     private void startActivity(Class<?> activityClass) {

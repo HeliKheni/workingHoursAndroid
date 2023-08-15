@@ -51,7 +51,7 @@
         android:id="@+id/tvcal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Calendar"
+        android:text="Reminder"
         android:textSize="17sp"
         android:textStyle="bold"
         android:layout_marginEnd="5sp"

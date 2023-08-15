@@ -29,7 +29,6 @@ public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.WorkViewHolder
     @Override
     public WorkViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_work, parent, false);
-
         // Attach the onTouchListener to the expandableLayout
         LinearLayout expandableLayout = view.findViewById(R.id.expandableLayout);
         return new WorkViewHolder(view);

@@ -14,8 +14,6 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-
     <LinearLayout
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
@@ -38,7 +36,7 @@
         android:id="@+id/dataLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="50dp"
         android:background="@color/white"
         android:elevation="4dp"
         android:orientation="vertical"
@@ -220,7 +218,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:onClick="buttonCancelClicked"/>
+            />
 
 
         <!-- Include Footer -->

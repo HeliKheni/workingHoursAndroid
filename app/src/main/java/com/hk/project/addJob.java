@@ -52,13 +52,10 @@ public class addJob extends AppCompatActivity {
                 Intent intent = new Intent(addJob.this, jobsManagement.class);
                 startActivity(intent);
 
-                // Finish the current activity to remove it from the activity stack
-                //finish();
             }
         });
 
     }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -112,21 +109,17 @@ public class addJob extends AppCompatActivity {
             Toast.makeText(this, "Job Data inserted successfully!", Toast.LENGTH_SHORT).show();
 
             // Check if the job is added or updated as default
-
             if (isDefaultTask) {
-                // Set the defaultJob variable with the default job title using AppData
-               // AppData.getInstance().setDefaultJob(jobTitle);
+
             }
         } else {
             Toast.makeText(this, "Failed to insert data.", Toast.LENGTH_SHORT).show();
         }
-
         // Close the database
         database.close();
         // Create an explicit intent to navigate to the "Job Management" activity
         Intent intent = new Intent(this, jobsManagement.class);
         startActivity(intent);
-        // Finish the current activity to go back to the previous activity
-      //finish();
+
     }
 }

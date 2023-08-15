@@ -101,7 +101,7 @@ public class jobsManagement extends AppCompatActivity {
         } else if (viewId == R.id.analytics) {
             startActivity(Reports.class);
         } else if (viewId == R.id.cal) {
-            startActivity(CalenderViewActivity.class);
+            startActivity(JobReminder.class);
         }
     }
     private void startActivity(Class<?> activityClass) {

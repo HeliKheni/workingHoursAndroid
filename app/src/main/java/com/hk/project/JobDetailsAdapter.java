@@ -43,10 +43,6 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Vi
             @Override
             public void onClick(View v) {
                 // Handle item click here
-
-                // Set background color for the clicked item
-              //  holder.jobTitleRateLayout.setBackgroundColor(v.getResources().getColor(R.color.sky));
-
                 Intent intent = new Intent(context, editJob.class);
                 intent.putExtra("jobId", jobDetails.getId());
                 context.startActivity(intent);
@@ -54,8 +50,6 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Vi
             }
         });
     }
-
-
 
     @Override
     public int getItemCount() {

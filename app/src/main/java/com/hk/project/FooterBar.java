@@ -47,7 +47,7 @@ public class FooterBar extends AppCompatActivity {
         startActivity(intent);
     }
     public void buttonCalenderClicked(View view) {
-        Intent intent = new Intent(this, CalenderViewActivity.class);
+        Intent intent = new Intent(this, JobReminder.class);
         startActivity(intent);
     }
 }

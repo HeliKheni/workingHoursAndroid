@@ -14,6 +14,9 @@
         android:theme="@style/Theme.Project"
         tools:targetApi="31">
         <activity
+            android:name=".JobReminder"
+            android:exported="false" />
+        <activity
             android:name=".Login"
             android:exported="false" />
         <activity
@@ -40,17 +43,12 @@
         <activity
             android:name=".workUpdateDelete"
             android:exported="false" />
-        <activity
-            android:name=".work_start_old_code"
-            android:exported="false" />
+        =
         <activity
             android:name=".Reports"
             android:exported="false" />
         <activity
             android:name=".mannual_timeEntry"
-            android:exported="false" />
-        <activity
-            android:name=".CalenderViewActivity"
             android:exported="false" />
 
         <meta-data
@@ -66,9 +64,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="true" />
     </application>
 
 </manifest>

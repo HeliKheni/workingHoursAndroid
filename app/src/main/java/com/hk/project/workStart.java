@@ -80,14 +80,8 @@ public class workStart extends AppCompatActivity {
             int position = adapter.getPosition(defaultJob);
             spJob.setSelection(position);
         }
-
         // Call the method to display the data from SQLite
         displayDataFromSQLite();
-
-
-        // Start Work button click
-        // Start Work button click
-        // Start Work button click
         ivstart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,8 +116,6 @@ public class workStart extends AppCompatActivity {
             }
         });
 
-
-        // Stop Work button click
         // Stop Work button click
         btnStop.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -169,7 +161,7 @@ public class workStart extends AppCompatActivity {
         } else if (viewId == R.id.analytics) {
             startActivity(Reports.class);
         } else if (viewId == R.id.cal) {
-            startActivity(CalenderViewActivity.class);
+            startActivity(JobReminder.class);
         }
     }
     private void startActivity(Class<?> activityClass) {

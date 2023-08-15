@@ -57,12 +57,8 @@ public class mannual_timeEntry extends AppCompatActivity {
         // Make the working time EditText non-editable
         tvWorkingTime.setEnabled(false);
 
-        // Temporary fixed data for the job dropdown
-       // String[] jobOptions = {"Job 1", "Job 2", "Job 3", "Job 4", "Job 5"};
-
         // Find the Spinner for the job dropdown
         spJob= findViewById(R.id.spJob);
-        // Access the defaultJob variable from AppData
 
         // Access the default job title from the database and set it as the selected item in the Spinner
         String defaultJob = DatabaseHelper.getInstance(this).getDefaultJob();
@@ -257,6 +253,4 @@ public class mannual_timeEntry extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
-
 }

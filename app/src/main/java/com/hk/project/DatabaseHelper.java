@@ -14,12 +14,13 @@ import java.util.List;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "my_database.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     public static final String TABLE_TIME_ENTRIES = "time_entries";
     public static final String TABLE_JOB_DETAILS = "job_details";
     public static final String COLUMN_ID = "id";
     public static final String COLUMN_DESCRIPTION = "description";
     public static final String COLUMN_JOB = "job";
+
     public static final String COLUMN_DAY = "day";
     public static final String COLUMN_START_TIME = "start_time";
     public static final String COLUMN_END_TIME = "end_time";
@@ -27,6 +28,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_HOUR_RATE = "hourly_rate";
     public static final String COLUMN_HOLIDAY_RATE = "holiday_rate";
     public static final String COLUMN_DEFAULT_TASK = "default_task";
+
+    public static final String TABLE_USERS = "users";
+    public static final String COLUMN_USER_ID = "user_id";
+    public static final String COLUMN_USERNAME = "username";
+    public static final String COLUMN_PASSWORD = "password";
+
 
     private static DatabaseHelper instance;
 
@@ -65,6 +72,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_DEFAULT_TASK + " BOOLEAN);";
 
         db.execSQL(createJobDetailsTableQuery);
+
+        // SQL query to create the users table
+        String CREATE_USERS_TABLE_QUERY = "CREATE TABLE " + TABLE_USERS + " (" +
+                COLUMN_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_USERNAME + " TEXT NOT NULL UNIQUE, " +
+                COLUMN_PASSWORD + " TEXT NOT NULL);";
+        // Create the users table
+        db.execSQL(CREATE_USERS_TABLE_QUERY);
     }
 
     @Override
@@ -186,14 +201,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
             cursor.close();
         }
-
-     //   Log.d("DatabaseHelper", "Query: " + db.compileStatement("SELECT * FROM " + TABLE_TIME_ENTRIES + " WHERE " + selection).toString());
-
-//        for (WorkItem item : timeEntries) {
-//            Log.d("DatabaseHelper", "Time Entry: " + item.getDescription() + " " + item.getWorkingTime());
-//        }
-
-        return timeEntries;
+     return timeEntries;
     }
 
     // Method to find the job ID based on the selected job title
@@ -214,5 +222,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         return jobId;
+    }
+
+    public boolean isUserExists(String username) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] projection = {COLUMN_USERNAME};
+        String selection = COLUMN_USERNAME + " = ?";
+        String[] selectionArgs = {username};
+
+        Cursor cursor = db.query(TABLE_USERS, projection, selection, selectionArgs, null, null, null);
+        boolean exists = cursor != null && cursor.getCount() > 0;
+        if (cursor != null) {
+            cursor.close();
+        }
+
+        return exists;
     }
 }

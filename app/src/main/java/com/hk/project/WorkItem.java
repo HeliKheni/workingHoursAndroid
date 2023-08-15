@@ -18,8 +18,6 @@ public class WorkItem {
         this.workingTime = workingTime;
         this.isExpanded = false;
     }
-
-    // Getters for all the data fields
     public String getDescription() {
         return description;
     }
@@ -44,7 +42,6 @@ public class WorkItem {
         return workingTime;
     }
 
-    // Getter and setter for isExpanded
     public boolean isExpanded() {
         return isExpanded;
     }
